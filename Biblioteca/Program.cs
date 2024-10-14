@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
+﻿
 
 class Program
 {
     static void Main()
     {
-        int ordem = 0;
         bool continuar = true;
         string senha = "12345";
         List<string> catalogoTitulos = new List<string>();
         List<int> quantidadelivro = new List<int>();
+        List<string> emprestimoTitulos = new List<string>();
+        List<int> quantidadeEmprestada = new List<int>();
+       
 
         while (continuar)
         {
@@ -33,11 +33,11 @@ class Program
             switch (opcao)
             {
                 case 1:
-                    MenuUsuario(ref catalogoTitulos, ordem, quantidadelivro);
+                    MenuUsuario(ref catalogoTitulos, quantidadelivro, emprestimoTitulos, quantidadeEmprestada);
                     break;
 
                 case 2:
-                    MenuAdministrador(ref catalogoTitulos, senha);
+                    MenuAdministrador(ref catalogoTitulos, ref quantidadelivro, senha);
                     break;
 
                 case 3:
@@ -52,15 +52,15 @@ class Program
         }
     }
 
-    static void MenuUsuario(ref List<string> catalogoTitulos, int ordem, List <int> quantidadelivro)
+    static void MenuUsuario(ref List<string> catalogoTitulos, List<int> quantidadelivro, List<string> emprestimoTitulos, List<int> quantidadeEmprestada)
     {
         while (true)
-        {
+        { int emprestimo = 0;
             Console.Clear();
             Console.WriteLine("Menu Usuário:");
             Console.WriteLine("1 - Consultar Catálogo");
-             Console.WriteLine("2. Pegar Livro");
-            Console.WriteLine("3. Devolver Livro");
+            Console.WriteLine("2 - Pegar Livro");
+            Console.WriteLine("3 - Devolver Livro");
             Console.WriteLine("4 - Sair");
             Console.Write("Escolha uma opção: ");
 
@@ -75,28 +75,16 @@ class Program
             {
                 case 1:
                     Console.WriteLine("Catálogo de Livros:");
-                    foreach (string livro in catalogoTitulos)
+                    for (int i = 0; i < catalogoTitulos.Count; i++)
                     {
-                        Console.WriteLine(livro);
+                        Console.WriteLine($"{i + 1} - {catalogoTitulos[i]} (Quantidade: {quantidadelivro[i]})");
                     }
                     Console.WriteLine("Pressione qualquer tecla para continuar...");
                     Console.ReadKey();
                     break;
 
-                    case 2:
-                    Console.WriteLine("Qual Livro deseja:");
-                    foreach(string livro in catalogoTitulos )
-                    {
-                        Console.WriteLine($"{ordem + 1} - "+(livro));
-                        ordem++;
-                    }
-                    Console.WriteLine("Digite o numero do livro que deseja");
-                    
-                     if (!int.TryParse(Console.ReadLine(), out int escolha))
-        {
-            Console.WriteLine("Escolha Invalida");
-        }
-        catalogoTitulos.RemoveAt(escolha - 1);
+                case 2:
+                    EmprestarLivro(ref catalogoTitulos, ref quantidadelivro, ref emprestimoTitulos, ref emprestimo, ref quantidadeEmprestada);
                     break;
 
                 case 4:
@@ -110,7 +98,7 @@ class Program
         }
     }
 
-    static void MenuAdministrador(ref List<string> catalogoTitulos, string senha)
+    static void MenuAdministrador(ref List<string> catalogoTitulos, ref List<int> quantidadelivro, string senha)
     {
         int tentativas = 0;
 
@@ -147,14 +135,14 @@ class Program
                 switch (opcaoAdmin)
                 {
                     case 1:
-                        CadastrarLivro(ref catalogoTitulos, quantidadelivro);
+                        CadastrarLivro(ref catalogoTitulos, ref quantidadelivro);
                         break;
 
                     case 2:
                         Console.WriteLine("Catálogo de Livros:");
-                        foreach (string livro in catalogoTitulos)
+                        for (int i = 0; i < catalogoTitulos.Count; i++)
                         {
-                            Console.WriteLine(livro);
+                            Console.WriteLine($"{catalogoTitulos[i]} (Quantidade: {quantidadelivro[i]})");
                         }
                         Console.WriteLine("Pressione qualquer tecla para continuar...");
                         Console.ReadKey();
@@ -175,7 +163,7 @@ class Program
         Thread.Sleep(1500);
     }
 
-    static void CadastrarLivro(ref List<string> catalogoTitulos, List<int> quantidadelivro)
+    static void CadastrarLivro(ref List<string> catalogoTitulos, ref List<int> quantidadelivro)
     {
         Console.Write("Título: ");
         string titulo = Console.ReadLine();
@@ -188,8 +176,8 @@ class Program
 
         Console.Write("Quantidade: ");
         if (int.TryParse(Console.ReadLine(), out int quantidade) && quantidade > 0)
-        { 
-            catalogoTitulos.Add($"{titulo} - {autor} - ({genero}) ");
+        {
+            catalogoTitulos.Add($"{titulo} - {autor} - ({genero})");
             quantidadelivro.Add(quantidade);
             Console.WriteLine("Livro cadastrado com sucesso.");
         }
@@ -200,5 +188,65 @@ class Program
         Console.WriteLine("Pressione qualquer tecla para continuar...");
         Console.ReadKey();
     }
+
+static void EmprestarLivro(ref List<string> catalogoTitulos, ref List<int> quantidadelivro, ref List<string> emprestimoTitulos, ref int emprestimo, ref List<int> quantidadeEmprestada)
+{
+    while (true) // Loop para permitir várias tentativas de empréstimo
+    {
+        if (emprestimo < 4) // Limite de empréstimos
+        {
+            for (int i = 0; i < catalogoTitulos.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} - {catalogoTitulos[i]} (Quantidade: {quantidadelivro[i]})");
+            }
+
+            Console.WriteLine("Qual o número do livro deseja pegar emprestado?");
+            if (!int.TryParse(Console.ReadLine(), out int escolhalivro) || escolhalivro < 1 || escolhalivro > catalogoTitulos.Count)
+            {
+                Console.WriteLine("Opção Inválida. Tente Novamente!");
+                Thread.Sleep(1500); // Adiciona um pequeno delay para o usuário ler a mensagem
+                continue; // Volta para o início do loop
+            }
+
+            // Lógica para pegar o livro emprestado
+            if (quantidadelivro[escolhalivro - 1] > 0)
+            {
+                
+                   // Verifica se o livro já foi emprestado
+                int index = emprestimoTitulos.IndexOf(catalogoTitulos[escolhalivro - 1]);
+                
+                if (index != -1) // Livro já emprestado
+                {
+                    quantidadeEmprestada[index]++; // Incrementa a quantidade emprestada
+                }
+                else // Livro não emprestado
+                {
+                    quantidadelivro[escolhalivro - 1]--; // Reduz a quantidade na biblioteca
+                    
+                    emprestimoTitulos.Add(catalogoTitulos[escolhalivro - 1]);
+                    quantidadeEmprestada.Add(1); // Adiciona novo empréstimo
+                }
+            }
+            else
+            {
+                Console.WriteLine("Desculpe, este livro não está disponível no momento.");
+            }
+             Console.WriteLine("Livros emprestados:");
+            for (int i = 0; i < emprestimoTitulos.Count; i++)
+            {
+                Console.WriteLine($"Você pegou: {i + 1} - {emprestimoTitulos[i]} (Quantidade: {quantidadeEmprestada[i]})");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Você já atingiu o limite de 4 livros emprestados.");
+            break; // Sai do loop se o limite for atingido
+        }
+
+        Console.WriteLine("Pressione qualquer tecla para continuar...");
+        Console.ReadKey();
+        break; // Sai do loop após uma tentativa válida
+    }
 }
 
+}
