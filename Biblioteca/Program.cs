@@ -147,7 +147,7 @@ class Program
                 switch (opcaoAdmin)
                 {
                     case 1:
-                        CadastrarLivro(ref catalogoTitulos,List<int> quantidadelivro);
+                        CadastrarLivro(ref catalogoTitulos, quantidadelivro);
                         break;
 
                     case 2:
