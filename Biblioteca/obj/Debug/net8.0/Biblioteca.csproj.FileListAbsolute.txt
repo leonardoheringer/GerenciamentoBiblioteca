@@ -13,3 +13,18 @@ C:\Users\Alunos\Documents\Informatica Tarde\Leonardo Heringer\GerenciamentoBibli
 C:\Users\Alunos\Documents\Informatica Tarde\Leonardo Heringer\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\Biblioteca.pdb
 C:\Users\Alunos\Documents\Informatica Tarde\Leonardo Heringer\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\Biblioteca.genruntimeconfig.cache
 C:\Users\Alunos\Documents\Informatica Tarde\Leonardo Heringer\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\ref\Biblioteca.dll
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\bin\Debug\net8.0\Biblioteca.exe
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\bin\Debug\net8.0\Biblioteca.deps.json
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\bin\Debug\net8.0\Biblioteca.runtimeconfig.json
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\bin\Debug\net8.0\Biblioteca.dll
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\bin\Debug\net8.0\Biblioteca.pdb
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\Biblioteca.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\Biblioteca.AssemblyInfoInputs.cache
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\Biblioteca.AssemblyInfo.cs
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\Biblioteca.csproj.CoreCompileInputs.cache
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\Biblioteca.sourcelink.json
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\Biblioteca.dll
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\refint\Biblioteca.dll
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\Biblioteca.pdb
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\Biblioteca.genruntimeconfig.cache
+C:\Users\leona\Documentos\Dev\GitHub\GerenciamentoBiblioteca\Biblioteca\obj\Debug\net8.0\ref\Biblioteca.dll
